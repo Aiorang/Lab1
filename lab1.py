@@ -9,7 +9,7 @@ def lab1_2(file,level):
     s = fs
     s2 = fs
     f.close
-
+  #testetstetst
     # 关键字字符串
     key = ['char','double','enum','float','int', 'long','short','signed','struct','union','unsigned','void', 'for','do','while',
        'break','continue','if','else','goto','switch','case','default','return','auto','extern','register','static','const',
