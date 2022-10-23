@@ -1,25 +1,25 @@
-def lab1_2(file,level):
+def lab1_2(path,level):
 
-    # 导入包
+    # import packages
     import re
 
-    # 导入文件
-    f = open(file,'r')
+    # import a file
+    f = open(path,'r')
     fs = f.readlines()
-    s = fs
-    s2 = fs
+    s = fs # Implement a list of levels 1 and 2
+    s2 = fs # Implement a list of levels 3 and 4
     f.close
-  
-    # 关键字字符串
+
+    # List of keyword strings
     key = ['char','double','enum','float','int', 'long','short','signed','struct','union','unsigned','void', 'for','do','while',
        'break','continue','if','else','goto','switch','case','default','return','auto','extern','register','static','const',
        'sizeof','typedef','volatile']
     
-    # 正则过滤
+    # Regular filter
     for i in range(len(s)):
         s[i] = re.sub("[();{}:]"," ", s[i])
 
-    # 拆分
+    # split
     sp = []
     spl = [] 
     for i in range(len(s)):
@@ -27,7 +27,9 @@ def lab1_2(file,level):
         for j in range(len(sp)):
             spl.append(sp[j])
 
+
     # level 1 and level 2
+
     total_Num = 0
     switch_Num = 0
     case_Num = 0
@@ -91,7 +93,7 @@ def lab1_2(file,level):
                 if_Elseif_else_On = False
                 if_Elseif_else_Num = if_Elseif_else_Num + 1
     
-    # 输出
+    # output
     if level == 1:
         print('total num:',total_Num)
         
@@ -113,8 +115,7 @@ def lab1_2(file,level):
         print('if-else num:',if_Else_num)
         print('if-elseif-else num:',if_Elseif_else_Num)
 
-lab1_2('E:/2.txt',4)
-    
+
 
             
 
