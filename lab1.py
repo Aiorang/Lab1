@@ -1,39 +1,44 @@
-def lab1_2(path,level):
+def lab1_2(file,level):
 
-    # import packages
+    # Import the required packages
     import re
 
-    # import a file
-    f = open(path,'r')
-    fs = f.readlines()
-    s = fs # Implement a list of levels 1 and 2
-    s2 = fs # Implement a list of levels 3 and 4
-    f.close
+    # Open and store the file through the path provided by the user
+    f = open(file,'r')
+    fs = f.readlines() 
+    s = fs 
+    s2 = fs 
+    f.close 
 
     # List of keyword strings
     key = ['char','double','enum','float','int', 'long','short','signed','struct','union','unsigned','void', 'for','do','while',
        'break','continue','if','else','goto','switch','case','default','return','auto','extern','register','static','const',
        'sizeof','typedef','volatile']
     
-    # Regular filter
-    for i in range(len(s)):
-        s[i] = re.sub("[();{}:]"," ", s[i])
-
-    # split
-    sp = []
-    spl = [] 
-    for i in range(len(s)):
-        sp = s[i].split()
-        for j in range(len(sp)):
-            spl.append(sp[j])
-
 
     # level 1 and level 2
 
-    total_Num = 0
-    switch_Num = 0
-    case_Num = 0
-    case = []
+    # Regular filter, Remove parentheses and punctuation
+    for i in range(len(s)):
+        s[i] = re.sub("[();{}:]"," ", s[i])
+
+    # Split the filtered array
+    sp = []
+    spl = [] 
+    for i in range(len(s)):
+        sp = s[i].split() # The split result is a list
+        for j in range(len(sp)):
+            # The contents of the split list need to be reconstituted into a new list 
+            # so that each item in the list is only one word
+            spl.append(sp[j]) 
+
+
+    
+    total_Num = 0 
+    switch_Num = 0 
+    case_Num = 0 
+    case = [] 
+
     for i in range(len(spl)):
     
         if spl[i] == 'switch': 
@@ -71,6 +76,7 @@ def lab1_2(path,level):
     if_Else_on = False
 
     for i in range(len(spl2)):
+
         if spl2[i] == 'if':
             if_Else_on = True
         
@@ -86,14 +92,15 @@ def lab1_2(path,level):
     if_Elseif_else_On = False
 
     for i in range(len(spl2)):
+        
         if spl2[i] == '@':
             if_Elseif_else_On = True
+
         if spl2[i] == 'if' or spl2[i] == 'else':
             if if_Elseif_else_On == True:
                 if_Elseif_else_On = False
                 if_Elseif_else_Num = if_Elseif_else_Num + 1
-    
-    # output
+        
     if level == 1:
         print('total num:',total_Num)
         
@@ -116,7 +123,4 @@ def lab1_2(path,level):
         print('if-elseif-else num:',if_Elseif_else_Num)
 
 
-
-            
-
-    
+    return total_Num,switch_Num,case,if_Else_num,if_Elseif_else_Num
